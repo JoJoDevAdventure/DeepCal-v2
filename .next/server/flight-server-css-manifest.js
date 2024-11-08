@@ -1,0 +1,1 @@
+self.__RSC_CSS_MANIFEST={"__entry_css__":{"/Users/youssefbouhlel/Freelance/DeepCal/DeepCal-v2/app/page":["/Users/youssefbouhlel/Freelance/DeepCal/DeepCal-v2/styles/globals.css"]},"/Users/youssefbouhlel/Freelance/DeepCal/DeepCal-v2/app/layout.js":["/Users/youssefbouhlel/Freelance/DeepCal/DeepCal-v2/styles/globals.css"]}
