@@ -1,15 +1,11 @@
 'use client';
 
-import { motion } from 'framer-motion';
 
-import { NewFeatures, TitleText, TypingText } from '../components';
-import { newFeatures } from '../constants';
 import styles from '../styles';
-import { fadeIn, planetVariants, staggerContainer } from '../utils/motion';
 
 const WhatsNew = () => (
   <section className={`${styles.paddings} relative z-10`}>
-    <motion.div
+    {/* <motion.div
       variants={staggerContainer}
       initial="hidden"
       whileInView="show"
@@ -39,7 +35,7 @@ const WhatsNew = () => (
           className="w-[90%] h-[90%] object-contain"
         />
       </motion.div>
-    </motion.div>
+    </motion.div> */}
   </section>
 );
 

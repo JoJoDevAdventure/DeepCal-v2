@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 
-const words = ['SENSOR', 'CAMERA', 'LiDAR'];
+const words = ['SENSOR', 'CAMERA', 'RADAR','LiDAR'];
 const typingSpeed = 150;
 const delayBetweenWords = 2000;
 

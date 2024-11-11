@@ -1,49 +1,93 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { TitleText, TypingText } from '../components';
 
-import { StartSteps, TitleText, TypingText } from '../components';
-import { startingFeatures } from '../constants';
-import styles from '../styles';
-import { fadeIn, planetVariants, staggerContainer } from '../utils/motion';
+const GetStarted = () => {
+  // Setting up scroll-based parallax effect
+  const { scrollY } = useScroll();
 
-const GetStarted = () => (
-  <section className={`${styles.paddings} relative z-10`}>
-    <motion.div
-      variants={staggerContainer}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: false, amount: 0.25 }}
-      className={`${styles.innerWidth} mx-auto flex lg:flex-row flex-col gap-8`}
-    >
-      <motion.div
-        variants={planetVariants('left')}
-        className={`flex-1 ${styles.flexCenter}`}
-      >
-        <img
-          src="/get-started.png"
-          alt="get-started"
-          className="w-[90%] h-[90%] object-contain"
-        />
-      </motion.div>
-      <motion.div
-        variants={fadeIn('left', 'tween', 0.2, 1)}
-        className="flex-[0.75] flex justify-center flex-col"
-      >
-        <TypingText title="| How Metaversus Works" />
-        <TitleText title={<>Get started with just a few clicks</>} />
-        <div className="mt-[31px] flex flex-col max-w-[370px] gap-[24px]">
-          {startingFeatures.map((feature, index) => (
-            <StartSteps
-              key={feature}
-              number={`${index < 10 ? '0' : ''} ${index + 1}`}
-              text={feature}
+  // State to check screen size
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Set up an effect to track window width for responsive scroll values
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768); // Adjust mobile width threshold as needed
+    };
+
+    // Initialize on mount and add event listener
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  // Use different translation values for mobile and desktop
+  const translateXFirstImage = useTransform(scrollY, [0, 4000], [0, isMobile ? 200 : 500]);
+  const translateXSecondImage = useTransform(scrollY, [0, 4500], [0, isMobile ? -200 : -800]);
+  const translateXThirdImage = useTransform(scrollY, [0, 5000], [0, isMobile ? 200 : 800]);
+
+  return (
+    <section className="relative z-10 overflow-hidden">
+      <motion.div className="w-screen flex flex-col gap-8 justify-center items-center">
+        <motion.div className="text-center w-full">
+          <TypingText title="| Wide Range of Calibration" textStyles="text-center"/>
+          <TitleText title={<>With Zero-Click You Calibrate</>} textStyles="text-center"/>
+        </motion.div>
+
+        <div>
+          <motion.div 
+            className="relative w-[170vw] h-[300px] md:h-[200px] lg:h-[350px] overflow-hidden"
+          >
+            <motion.img
+              style={{ x: translateXFirstImage }}
+              src="/camera.png"
+              alt="Calibration type 1"
+              className="w-full h-full object-cover"
             />
-          ))}
+            <div className="absolute inset-0 flex justify-center items-center">
+              <div className="gradient-dark" />
+              <TitleText title={<>CAMERA</>} textStyles="text-white font-bold md:text-[102px] text-[62px] relative z-10"/>
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="relative w-[170vw] h-[350px] overflow-hidden"
+          >
+            <motion.img
+              style={{ x: translateXSecondImage }}
+              src="/radar.png"
+              alt="Calibration type 2"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 flex justify-center items-center">
+              <div className="gradient-dark" />
+              <TitleText title={<>RADAR</>} textStyles="text-white font-bold md:text-[102px] text-[62px] relative z-10"/>
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="relative w-[170vw] h-[350px] overflow-hidden"
+          >
+            <motion.img
+              src="/lidar.png"
+              alt="Calibration type 3"
+              className="w-full h-full object-cover"
+              style={{ x: translateXThirdImage }}
+            />
+            <div className="absolute inset-0 flex justify-center items-center">
+              <div className="gradient-dark" />
+              <TitleText title={<>LIDAR</>} textStyles="text-white font-bold md:text-[102px] text-[62px] relative z-10"/>
+            </div>
+          </motion.div>
         </div>
       </motion.div>
-    </motion.div>
-  </section>
-);
+    </section>
+  );
+};
 
 export default GetStarted;

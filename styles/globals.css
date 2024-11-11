@@ -63,7 +63,7 @@
   left: 20%;
   top: 5%;
 
-  background: rgba(149, 66, 232, 0.35);
+  background: rgba(51, 167, 255, 0.548);
   filter: blur(175px);
   transform: rotate(-114.2deg);
 }
@@ -75,7 +75,7 @@
   left: 30%;
   top: 10%;
 
-  background: rgba(45, 72, 152, 0.75);
+  background: rgba(0, 179, 255, 0.75);
   filter: blur(200px);
   transform: rotate(-53.13deg);
 }
@@ -83,9 +83,19 @@
 .gradient-05 {
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0.04) 0%,
-    rgba(255, 255, 255, 0) 100%
+    rgba(0, 42, 121, 0.04) 0%,
+    rgba(0, 60, 133, 0) 100%
   );
+}
+
+.gradient-dark {
+  position: absolute;
+  width: 20%;
+  height: 50%;
+  background: rgba(0, 0, 0, 1); /* Dark, semi-transparent background */
+  filter: blur(90px); /* Large blur for soft edges */
+  z-index: 0; /* Ensures the blurred background stays behind the text */
+  border-radius: 50px; /* Adds subtle rounding to soften edges */
 }
 
 .feedback-gradient {
@@ -95,7 +105,7 @@
   left: 0px;
   top: 0px;
 
-  background: #8d39a3;
+  background: #004386;
   filter: blur(175px);
 }
 
