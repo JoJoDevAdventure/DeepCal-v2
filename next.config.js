@@ -1,9 +1,7 @@
-// next.config.js
+/** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone',
-  experimental:{appDir: true},
-  images: {
-    unoptimized: true, // Required for static exports when using <Image> component
+  experimental: {
+    appDir: false,
   },
 };
 
